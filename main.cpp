@@ -20,16 +20,16 @@ int main()
 
 	srand((unsigned int)time(nullptr));
 
-	//random_shuffle(Pocket[0], Pocket[52]);
+	random_shuffle(&Pocket[0], &Pocket[52]);
 	//shuffle, 알고리즘, algorithm
-	for (int i = 0; i < 10000; ++i)
-	{
-		int First = rand() % MAXCOUNT;
-		int Second = rand() % MAXCOUNT;
-		int Temp = Pocket[First];
-		Pocket[First] = Pocket[Second];
-		Pocket[Second] = Temp;
-	}
+	//for (int i = 0; i < 10000; ++i)
+	//{
+	//	int First = rand() % MAXCOUNT;
+	//	int Second = rand() % MAXCOUNT;
+	//	int Temp = Pocket[First];
+	//	Pocket[First] = Pocket[Second];
+	//	Pocket[Second] = Temp;
+	//}
 
 	int PickCards[4];
 
@@ -136,6 +136,8 @@ int main()
 		cout << ComputerScore << " : " << PlayerScore << endl;
 		cout << "Player Win" << endl;
 	}
+
+	cout << "다했냐?" << endl;
 
 
 	return 0;
