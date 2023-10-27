@@ -7,41 +7,45 @@
 
 using namespace std;
 
-int main()
+int Pocket[MAXCOUNT]; // 0 + 1 ~ 51 + 1
+int PlayerScore = 0;
+int ComputerScore = 0;
+int PickCards[4];
+
+
+void Init()
 {
-	int Pocket[MAXCOUNT]; // 0 + 1 ~ 51 + 1
-
-	//char CardsType[4] = { '♠', '♣', '♥', '◆' };
-
 	for (int i = 0; i < MAXCOUNT; ++i)
 	{
 		Pocket[i] = i + 1;
 	}
+}
 
+void Shuffle()
+{
 	srand((unsigned int)time(nullptr));
 
-	random_shuffle(&Pocket[0], &Pocket[52]);
 	//shuffle, 알고리즘, algorithm
-	//for (int i = 0; i < 10000; ++i)
-	//{
-	//	int First = rand() % MAXCOUNT;
-	//	int Second = rand() % MAXCOUNT;
-	//	int Temp = Pocket[First];
-	//	Pocket[First] = Pocket[Second];
-	//	Pocket[Second] = Temp;
-	//}
+	for (int i = 0; i < 10000; ++i)
+	{
+		int First = rand() % MAXCOUNT;
+		int Second = rand() % MAXCOUNT;
+		int Temp = Pocket[First];
+		Pocket[First] = Pocket[Second];
+		Pocket[Second] = Temp;
+	}
+}
 
-	int PickCards[4];
-
+void ChooseCard()
+{
 	for (int i = 0; i < 4; ++i)
 	{
 		PickCards[i] = Pocket[i];
 	}
+}
 
-	int PlayerScore = 0;
-	int ComputerScore = 0;
-
-	//고른 카드 출력
+void Draw()
+{
 	for (int i = 0; i < 4; ++i)
 	{
 		int CardType = PickCards[i] / 13;
@@ -115,7 +119,10 @@ int main()
 			}
 		}
 	}
+}
 
+void Process()
+{
 	if (ComputerScore > 21)
 	{
 		cout << ComputerScore << " : " << PlayerScore << endl;
@@ -136,9 +143,22 @@ int main()
 		cout << ComputerScore << " : " << PlayerScore << endl;
 		cout << "Player Win" << endl;
 	}
+}
 
-	cout << "다했냐?" << endl;
+int main()
+{
+	Init();
 
+	for (int i = 0; i < 10; i++)
+	{
+		Shuffle();
+	}
+
+	ChooseCard();
+
+	Draw();
+
+	Process();
 
 	return 0;
 }
